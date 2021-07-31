@@ -7,7 +7,7 @@
 
 
 void disasmPrintChunk (Chunk * chunk, const char * name) {
-    printf ("== %s ==\n", name);
+    printf ("== %s == at 0x%p\n", name, chunk);
     for (int index = 0; index < chunk->count;) {
         index = disasmPrintInstr(chunk, index);
     }

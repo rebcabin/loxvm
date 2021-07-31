@@ -14,4 +14,8 @@
 
 #include <stdio.h>
 
+
+#define DEBUG_TRACE_EXECUTION
+
+
 #endif //LOXVM_COMMON_H
