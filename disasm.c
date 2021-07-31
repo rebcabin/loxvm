@@ -14,9 +14,18 @@ void disasmPrintChunk (Chunk * chunk, const char * name) {
 }
 
 
-static int simpleInstruction(const char * name, int index) {
+static int printSimpleInstr(const char * name, int index) {
     printf ("%s\n", name);
     return index + 1;
+}
+
+
+static int printConstantInstr(const char * name, Chunk * c, int index) {
+    uint8_t iconst = c->code[index + 1];  // Value is right after the opcode.
+    printf("%-16s %4d '", name, iconst);
+    printValue (c->constants.values[iconst]);
+    printf ("'\n");
+    return index + 2;
 }
 
 
@@ -25,7 +34,9 @@ int disasmPrintInstr(Chunk * chunk, int index) {
     uint8_t instr = chunk->code[index];
     switch (instr) {
         case OP_RETURN:
-            return simpleInstruction("OP_RETURN", index);
+            return printSimpleInstr("OP_RETURN", index);
+        case OP_CONSTANT:
+            return printConstantInstr("OP_CONSTANT", chunk, index);
         default:
             printf("Unknown opcode %d\n", instr);
             return index + 1;

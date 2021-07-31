@@ -6,9 +6,11 @@
 #define LOXVM_CHUNK_H
 
 #include "common.h"
+#include "values.h"
 
 
 typedef enum {
+    OP_CONSTANT,
     OP_RETURN,
 } OpCode;
 
@@ -17,6 +19,7 @@ typedef struct {
     int count;  // size_t ?
     int capacity;  // size_t ?
     uint8_t * code;
+    ValueArray constants;
 } Chunk;
 
 
@@ -27,6 +30,9 @@ void freeChunk (Chunk * chunk);
 
 
 void writeChunk (Chunk * chunk, uint8_t byte);
+
+
+int addConstant(Chunk * chunk, Value value);
 
 
 #endif //LOXVM_CHUNK_H
