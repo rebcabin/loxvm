@@ -8,11 +8,13 @@ testChunk() {
     Chunk c;
     initChunk(&c);
 
-    int constant = addConstant(&c, 3.14159);
-    writeChunk(&c, OP_CONSTANT);
-    writeChunk(&c, constant);
+    writeChunk(&c, OP_CONSTANT, 42);
+    writeChunk(&c, addConstant(&c, 3.14159), 42);
 
-    writeChunk(&c, OP_RETURN);
+    writeChunk(&c, OP_CONSTANT, 42);
+    writeChunk(&c, addConstant(&c, 2.71828), 42);
+
+    writeChunk(&c, OP_RETURN, 43);
     disasmPrintChunk(&c, "test chunk");
     freeChunk(&c);
 }

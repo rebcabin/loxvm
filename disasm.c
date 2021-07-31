@@ -31,6 +31,11 @@ static int printConstantInstr(const char * name, Chunk * c, int index) {
 
 int disasmPrintInstr(Chunk * chunk, int index) {
     printf("%04d ", index);
+    if (index > 0 && chunk->lines[index] == chunk->lines[index - 1]) {
+        printf ("   | ");
+    } else {
+        printf ("%4d ", chunk->lines[index]);
+    }
     uint8_t instr = chunk->code[index];
     switch (instr) {
         case OP_RETURN:
