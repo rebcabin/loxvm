@@ -8,9 +8,14 @@
 #include "chunk.h"
 
 
+#define VSTACK_MAX 256
+
+
 typedef struct {
     Chunk * chunk;
     uint8_t * ip;
+    Value vstack[VSTACK_MAX];  // There must be a call-frame stack somewhere.
+    Value * vstackTop;
 } VM;
 
 

@@ -38,10 +38,20 @@ int disasmPrintInstr(Chunk * chunk, int index) {
     }
     uint8_t instr = chunk->code[index];
     switch (instr) {
-        case OP_RETURN:
-            return printSimpleInstr("OP_RETURN", index);
         case OP_CONSTANT:
             return printConstantInstr("OP_CONSTANT", chunk, index);
+        case OP_NEGATE:
+            return printSimpleInstr("OP_NEGATE", index);
+        case OP_ADD:
+            return printSimpleInstr("OP_ADD", index);
+        case OP_SUBTRACT:
+            return printSimpleInstr("OP_SUBTRACT", index);
+        case OP_MULTIPLY:
+            return printSimpleInstr("OP_MULTIPLY", index);
+        case OP_DIVIDE:
+            return printSimpleInstr("OP_DIVIDE", index);
+        case OP_RETURN:
+            return printSimpleInstr("OP_RETURN", index);
         default:
             printf("Unknown opcode %d\n", instr);
             return index + 1;
