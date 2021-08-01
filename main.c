@@ -26,7 +26,7 @@ void testVM() {
     Chunk c;
     initChunk(&c);
     buggleTestChunk(&c);
-    writeChunk(&c, OP_NEGATE, 1234);
+    writeChunk(&c, OP_NEGATE, 234);
     writeChunk(&c, OP_DIVIDE, 765);
     writeChunk(&c, OP_RETURN, 43);
     printf("******** TEST INTERPRETER *******\n");
